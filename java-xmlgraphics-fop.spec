@@ -7,10 +7,6 @@ Release:	1
 Vendor:		http://xml.apache.org/
 License:	Apache Software License (BSD-like)
 Group:		Applications/Publishing/XML/Java
-Group(de):	Applikationen/Publizieren/XML/Java
-Group(es):	Aplicaciones/Editoración/XML/Java
-Group(pl):	Aplikacje/Publikowanie/XML/Java
-Group(pt_BR):	Aplicações/Editoração/XML/Java
 Source0:	http://xml.apache.org/dist/fop/%{name}-%{version}-src.tar.gz
 Source1:	fop-font-install.sh
 Source2:	fop.sh
