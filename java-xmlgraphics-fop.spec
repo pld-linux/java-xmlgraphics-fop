@@ -35,7 +35,7 @@ XT) SAX events.
 %setup -q -n %{arname}
 
 %build
-JAVA_HOME=/usrlib//java-sdk
+JAVA_HOME=/usr/lib/java-sdk
 export JAVA_HOME
 ./build.sh
 
