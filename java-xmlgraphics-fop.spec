@@ -10,32 +10,31 @@ Release:	1
 Vendor:		xml.apache.org
 License:	Apache Software License (BSD-like)
 Group:		Applications/Publishing/XML
+Group(de):	Applikationen/Publizieren/XML
 Group(pl):	Aplikacje/Publikowanie/XML
-URL:		http://xml.apache.org/fop
 Source0:	http://xml.apache.org/dist/fop/%{arname}.tar.gz
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+URL:		http://xml.apache.org/fop/
 BuildArch:	noarch
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define	_javaclassdir	%{_datadir}/java/classes
 
 %description 
-FOP is the world's first print formatter driven by XSL
-formatting objects. It is a Java application that reads a formatting
-object tree and then turns it into a PDF document. The formatting
-object tree, can be in the form of an XML document (output by an XSLT
-engine like XT or Xalan) or can be passed in memory as a DOM Document
-or (in the case of XT) SAX events.
-
-%description -l pl 
+FOP is the world's first print formatter driven by XSL formatting
+objects. It is a Java application that reads a formatting object tree
+and then turns it into a PDF document. The formatting object tree, can
+be in the form of an XML document (output by an XSLT engine like XT or
+Xalan) or can be passed in memory as a DOM Document or (in the case of
+XT) SAX events.
 
 %prep
 %setup -q -n %{arname}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d 		$RPM_BUILD_ROOT%{_javaclassdir}
-install *.jar		$RPM_BUILD_ROOT%{_javaclassdir}
-install lib/w3c.jar 	$RPM_BUILD_ROOT%{_javaclassdir}
+install -d $RPM_BUILD_ROOT%{_javaclassdir}
+
+install *.jar lib/w3c.jar $RPM_BUILD_ROOT%{_javaclassdir}
 
 gzip -9nf LICENSE README STATUS
 
