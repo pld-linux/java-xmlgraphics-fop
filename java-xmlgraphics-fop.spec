@@ -3,7 +3,7 @@ Summary:	XSL Formatter in Java
 Summary(pl):	Formater XSL napisany w Javie
 Name:		fop
 %define arname	xml-%{name}
-%define snapshot 20010608121210
+%define snapshot 20010613104701
 Version:	0.19
 Release:	0.%{snapshot}
 Vendor:		xml.apache.org
