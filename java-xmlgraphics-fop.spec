@@ -1,7 +1,8 @@
+
 Summary:	XSL Formatter in Java
 Summary(pl):	Formater XSL napisany w Javie
 Name:		Fop
-Version:	0.20.1
+Version:	0.20.3rc
 Release:	1
 Vendor:		http://xml.apache.org/
 License:	Apache Software License (BSD-like)
@@ -13,13 +14,21 @@ Group(pt_BR):	Aplicações/Editoração/XML/Java
 Source0:	http://xml.apache.org/dist/fop/%{name}-%{version}-src.tar.gz
 Source1:	fop-font-install.sh
 Source2:	fop.sh
+Patch0:	fop-build.patch
 URL:		http://xml.apache.org/fop/
+BuildRequires:	batik
 BuildRequires:	jdk >= 1.3
+BuildRequires:	xalan-j
+BuildRequires:	xerces-j
+Requires:	batik
 Requires:	freetype1
+Requires:	jre >= 1.3
+Requires:	xalan-j
+Requires:	xerces-j
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_javaclassdir		%{_datadir}/java/classes
+%define		_javaclassdir		%{_libdir}/java
 %define		_fop_font_metrics	/var/lib/fop
 
 %description 
@@ -40,12 +49,13 @@ dokument DOM lub (w przypadku XT) zdarzenia SAX.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 JAVA_HOME=%{_libdir}/java-sdk
 export JAVA_HOME
-chmod 755 build.sh
-./build.sh
+
+sh build.sh
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -58,10 +68,9 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/fop
 # create empty config file
 echo > $RPM_BUILD_ROOT%{_fontsdir}/fop-font.config
 
-install lib/{jimi-1.0,xalan-2.0.0,xerces-1.2.3,batik}.jar build/fop.jar \
-	$RPM_BUILD_ROOT%{_javaclassdir}
+install lib/jimi-1.0.jar build/fop.jar $RPM_BUILD_ROOT%{_javaclassdir}
 
-gzip -9nf LICENSE README STATUS
+gzip -9nf LICENSE README STATUS lib/jimi-License.txt
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -71,7 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz docs/html-docs
+%doc *.gz lib/jimi-License.txt.gz docs/html-docs
 %dir %{_fop_font_metrics}
 %attr(755,root,root) %{_bindir}/*
 %{_javaclassdir}/*
