@@ -9,7 +9,7 @@ License:	Apache Software License (BSD-like)
 Group:		Applications/Publishing/XML/Java
 Group(de):	Applikationen/Publizieren/XML/Java
 Group(pl):	Aplikacje/Publikowanie/XML/Java
-Source0:	http://xml.apache.org/dist/%{name}/%{name}-%{version}-src.tar.gz
+Source0:	http://xml.apache.org/dist/fop/%{name}-%{version}-src.tar.gz
 Source1:	fop-font-install.sh
 Source2:	fop.sh
 URL:		http://xml.apache.org/fop/
