@@ -12,16 +12,16 @@ Group:		Applications/Publishing/XML
 Group(de):	Applikationen/Publizieren/XML
 Group(pl):	Aplikacje/Publikowanie/XML
 Source0:	http://xml.apache.org/from-cvs/xml-fop/%{arname}_%{snapshot}.tar.gz
-Source1:	fop-font-install.sh
-Source2:	fop.sh
+Source1:	%{name}-font-install.sh
+Source2:	%{name}.sh
 URL:		http://xml.apache.org/fop/
 BuildRequires:	java1.3sdk
 Requires:	freetype1
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define	_javaclassdir	%{_datadir}/java/classes
-%define _fop_font_metrics /var/lib/fop
+%define		_javaclassdir		%{_datadir}/java/classes
+%define		_fop_font_metrics	/var/lib/fop
 
 %description 
 FOP is the world's first print formatter driven by XSL formatting
@@ -35,25 +35,23 @@ XT) SAX events.
 %setup -q -n %{arname}
 
 %build
-export JAVA_HOME=/usr/lib/java-sdk
+JAVA_HOME=/usrlib//java-sdk
+export JAVA_HOME
 ./build.sh
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_javaclassdir},%{_fop_font_metrics},%{_bindir}} \
+	$RPM_BUILD_ROOT%{_fontsdir}
 
-install -d $RPM_BUILD_ROOT%{_javaclassdir}
-install -d $RPM_BUILD_ROOT%{_fop_font_metrics}
-
-install -d $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/fop-font-install
 install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/fop
 
 # create empty config file
-install -d $RPM_BUILD_ROOT%{_fontsdir}
 echo > $RPM_BUILD_ROOT%{_fontsdir}/fop-font.config
 
 install lib/{jimi-1.0,w3c,xalan-2.0.0,xerces-1.2.3}.jar build/fop.jar \
-    $RPM_BUILD_ROOT%{_javaclassdir}
+	$RPM_BUILD_ROOT%{_javaclassdir}
 
 gzip -9nf LICENSE README STATUS
 
