@@ -1,11 +1,10 @@
-
 Summary:	XSL Formatter in Java
 Summary(pl):	Formater XSL napisany w Javie
 Name:		Fop
 Version:	0.20.3rc
-Release:	2
+Release:	3
 Vendor:		http://xml.apache.org/
-License:	Apache Software License (BSD-like)
+License:	Apache
 Group:		Applications/Publishing/XML/Java
 Source0:	http://xml.apache.org/dist/fop/%{name}-%{version}-src.tar.gz
 Source1:	fop-font-install.sh
@@ -66,8 +65,6 @@ echo > $RPM_BUILD_ROOT%{_fontsdir}/fop-font.config
 
 install lib/{jimi-1.0.jar,logkit-1.0b4.jar,avalon-framework-4.0.jar} build/fop.jar $RPM_BUILD_ROOT%{_javaclassdir}
 
-gzip -9nf LICENSE README STATUS lib/jimi-License.txt
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -76,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz lib/jimi-License.txt.gz docs/html-docs
+%doc LICENSE README STATUS lib/jimi-License.txt docs/html-docs
 %dir %{_fop_font_metrics}
 %attr(755,root,root) %{_bindir}/*
 %{_javaclassdir}/*
