@@ -13,7 +13,7 @@ Source0:	http://xml.apache.org/dist/%{name}/%{name}-%{version}-src.tar.gz
 Source1:	fop-font-install.sh
 Source2:	fop.sh
 URL:		http://xml.apache.org/fop/
-BuildRequires:	java1.3sdk
+BuildRequires:	jdk = 1.3
 Requires:	freetype1
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
