@@ -3,7 +3,7 @@ Summary:	XSL Formatter in Java
 Summary(pl):	Formater XSL napisany w Javie
 Name:		fop
 %define arname	xml-%{name}
-%define snapshot 20010427102823
+%define snapshot 20010608121210
 Version:	0.19
 Release:	0.%{snapshot}
 Vendor:		xml.apache.org
@@ -50,7 +50,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/fop
 # create empty config file
 echo > $RPM_BUILD_ROOT%{_fontsdir}/fop-font.config
 
-install lib/{jimi-1.0,w3c,xalan-2.0.0,xerces-1.2.3}.jar build/fop.jar \
+install lib/{jimi-1.0,xalan-2.0.0,xerces-1.2.3,batik}.jar build/fop.jar \
 	$RPM_BUILD_ROOT%{_javaclassdir}
 
 gzip -9nf LICENSE README STATUS
