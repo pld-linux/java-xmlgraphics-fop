@@ -1,15 +1,14 @@
 Summary:	XSL Formatter in Java
 Summary(pl):	Formater XSL napisany w Javie
-Name:		Fop
-Version:	0.20.3rc
-Release:	3
+Name:		fop
+Version:	0.20.5rc2
+Release:	1
 Vendor:		http://xml.apache.org/
 License:	Apache
 Group:		Applications/Publishing/XML/Java
 Source0:	http://xml.apache.org/dist/fop/%{name}-%{version}-src.tar.gz
 Source1:	fop-font-install.sh
 Source2:	fop.sh
-Patch0:		fop-build.patch
 URL:		http://xml.apache.org/fop/
 BuildRequires:	batik
 BuildRequires:	jdk >= 1.3
@@ -44,7 +43,6 @@ dokument DOM lub (w przypadku XT) zdarzenia SAX.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 JAVA_HOME=%{_libdir}/java
@@ -63,7 +61,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/fop
 # create empty config file
 echo > $RPM_BUILD_ROOT%{_fontsdir}/fop-font.config
 
-install lib/{jimi-1.0.jar,logkit-1.0b4.jar,avalon-framework-4.0.jar} build/fop.jar $RPM_BUILD_ROOT%{_javaclassdir}
+install lib/avalon-framework-cvs-20020806.jar build/fop.jar $RPM_BUILD_ROOT%{_javaclassdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -73,7 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE README STATUS lib/jimi-License.txt docs/html-docs
+%doc LICENSE README STATUS
 %dir %{_fop_font_metrics}
 %attr(755,root,root) %{_bindir}/*
 %{_javaclassdir}/*
