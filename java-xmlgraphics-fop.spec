@@ -1,8 +1,7 @@
 
 Summary:	XSL Formatter in Java
 Summary(pl):	Formater XSL napisany w Javie
-Name:		fop
-%define arname	Fop
+Name:		Fop
 Version:	0.20.0
 Release:	1
 Vendor:		xml.apache.org
@@ -10,7 +9,7 @@ License:	Apache Software License (BSD-like)
 Group:		Applications/Publishing/XML
 Group(de):	Applikationen/Publizieren/XML
 Group(pl):	Aplikacje/Publikowanie/XML
-Source0:	http://xml.apache.org/dist/%{name}/%{arname}-%{version}-src.tar.gz
+Source0:	http://xml.apache.org/dist/%{name}/%{name}-%{version}-src.tar.gz
 Source1:	%{name}-font-install.sh
 Source2:	%{name}.sh
 URL:		http://xml.apache.org/fop/
@@ -31,7 +30,7 @@ Xalan) or can be passed in memory as a DOM Document or (in the case of
 XT) SAX events.
 
 %prep
-%setup -q -n %{arname}-%{version}
+%setup -q
 
 %build
 JAVA_HOME=/usr/lib/java-sdk
