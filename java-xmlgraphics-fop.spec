@@ -68,7 +68,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/fop
 # create empty config file
 echo > $RPM_BUILD_ROOT%{_fontsdir}/fop-font.config
 
-install lib/jimi-1.0.jar build/fop.jar $RPM_BUILD_ROOT%{_javaclassdir}
+install lib/{jimi-1.0.jar,logkit-1.0b4.jar} build/fop.jar $RPM_BUILD_ROOT%{_javaclassdir}
 
 gzip -9nf LICENSE README STATUS lib/jimi-License.txt
 
