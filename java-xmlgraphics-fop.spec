@@ -10,8 +10,8 @@ Group:		Applications/Publishing/XML
 Group(de):	Applikationen/Publizieren/XML
 Group(pl):	Aplikacje/Publikowanie/XML
 Source0:	http://xml.apache.org/dist/%{name}/%{name}-%{version}-src.tar.gz
-Source1:	%{name}-font-install.sh
-Source2:	%{name}.sh
+Source1:	fop-font-install.sh
+Source2:	fop.sh
 URL:		http://xml.apache.org/fop/
 BuildRequires:	java1.3sdk
 Requires:	freetype1
