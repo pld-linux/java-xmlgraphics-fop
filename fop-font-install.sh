@@ -5,15 +5,17 @@ TTF_DIR=$FONTDIR/TTF
 TTF_TOOL=/usr/bin/ttmkfdir
 FOP_CONF=$FONTDIR/fop-font.config
 
-CLASSPATH=/usr/share/java/classes/fop.jar
-CLASSPATH=$CLASSPATH:/usr/share/java/classes/jimi-1.0.jar
-CLASSPATH=$CLASSPATH:/usr/share/java/classes/w3c.jar
-CLASSPATH=$CLASSPATH:/usr/share/java/classes/xalan-2.0.0.jar
-CLASSPATH=$CLASSPATH:/usr/share/java/classes/xerces-1.2.3.jar
+JCL=/usr/lib/java
+
+CLASSPATH=$JCL/fop.jar
+CLASSPATH=$CLASSPATH:$JCL/jimi-1.0.jar
+CLASSPATH=$CLASSPATH:$JCL/xml-apis.jar
+CLASSPATH=$CLASSPATH:$JCL/xalan.jar
+CLASSPATH=$CLASSPATH:$JCL/xerces.jar
 
 # create font metric files
 for font in  $TTF_DIR/*.ttf; do
-    /usr/lib/java-jre/jre/bin/java -classpath $CLASSPATH \
+    java -classpath $CLASSPATH \
         org.apache.fop.fonts.apps.TTFReader $font /var/lib/fop/$(basename $font .ttf).xml;
 done
 
