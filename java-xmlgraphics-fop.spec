@@ -10,7 +10,7 @@ Group:		Applications/Publishing/XML/Java
 Source0:	http://xml.apache.org/dist/fop/%{name}-%{version}-src.tar.gz
 Source1:	fop-font-install.sh
 Source2:	fop.sh
-Patch0:	fop-build.patch
+Patch0:		fop-build.patch
 URL:		http://xml.apache.org/fop/
 BuildRequires:	batik
 BuildRequires:	jdk >= 1.3
@@ -27,7 +27,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_javaclassdir		%{_libdir}/java
 %define		_fop_font_metrics	/var/lib/fop
 
-%description 
+%description
 FOP is the world's first print formatter driven by XSL formatting
 objects. It is a Java application that reads a formatting object tree
 and then turns it into a PDF document. The formatting object tree, can
