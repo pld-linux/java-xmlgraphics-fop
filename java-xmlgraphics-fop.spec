@@ -1,13 +1,13 @@
 Summary:	XSL Formatter in Java
 Summary(pl):	Formater XSL napisany w Javie
 Name:		fop
-Version:	0.20.5rc2
+Version:	0.20.5
 Release:	1
 Vendor:		http://xml.apache.org/
 License:	Apache
 Group:		Applications/Publishing/XML/Java
 Source0:	http://www.apache.org/dist/xml/fop/source/%{name}-%{version}-src.tar.gz
-# Source0-md5:	0440c784ad0763466ba100e502ccf07f
+# Source0-md5:	1a31eb1357e5d4b8d32d4cb3edae2da2
 Source1:	fop-font-install.sh
 Source2:	fop.sh
 URL:		http://xml.apache.org/fop/
