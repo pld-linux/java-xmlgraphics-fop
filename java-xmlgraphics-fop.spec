@@ -6,7 +6,7 @@ Release:	1
 Vendor:		http://xml.apache.org/
 License:	Apache
 Group:		Applications/Publishing/XML/Java
-Source0:	http://xml.apache.org/dist/fop/%{name}-%{version}-src.tar.gz
+Source0:	http://www.apache.org/dist/xml/fop/source/%{name}-%{version}-src.tar.gz
 # Source0-md5:	0440c784ad0763466ba100e502ccf07f
 Source1:	fop-font-install.sh
 Source2:	fop.sh
