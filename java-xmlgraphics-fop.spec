@@ -1,14 +1,15 @@
-
 Summary:	XSL Formatter in Java
 Summary(pl):	Formater XSL napisany w Javie
 Name:		Fop
 Version:	0.20.1
 Release:	1
-Vendor:		xml.apache.org
+Vendor:		http://xml.apache.org/
 License:	Apache Software License (BSD-like)
 Group:		Applications/Publishing/XML/Java
 Group(de):	Applikationen/Publizieren/XML/Java
+Group(es):	Aplicaciones/Editoración/XML/Java
 Group(pl):	Aplikacje/Publikowanie/XML/Java
+Group(pt_BR):	Aplicações/Editoração/XML/Java
 Source0:	http://xml.apache.org/dist/fop/%{name}-%{version}-src.tar.gz
 Source1:	fop-font-install.sh
 Source2:	fop.sh
@@ -29,11 +30,19 @@ be in the form of an XML document (output by an XSLT engine like XT or
 Xalan) or can be passed in memory as a DOM Document or (in the case of
 XT) SAX events.
 
+%description -l pl
+FOP to pierwszy na ¶wiecie program formatuj±cy wydruki sterowany
+obiektami formatuj±cymi XSL. To jest aplikacja Javy czytaj±ca drzewo
+obiektów formatuj±cych i przekszta³caj±ca je w dokument PDF. Drzewo
+obiektów formatuj±cych mo¿e byæ w formie dokumentu XML (wyj¶cia z
+silnika XSLT takiego jak XT lub Xalan) lub byæ przekazane jako
+dokument DOM lub (w przypadku XT) zdarzenia SAX.
+
 %prep
 %setup -q
 
 %build
-JAVA_HOME=/usr/lib/java-sdk
+JAVA_HOME=%{_libdir}/java-sdk
 export JAVA_HOME
 chmod 755 build.sh
 ./build.sh
@@ -54,11 +63,11 @@ install lib/{jimi-1.0,xalan-2.0.0,xerces-1.2.3,batik}.jar build/fop.jar \
 
 gzip -9nf LICENSE README STATUS
 
-%post
-%{_bindir}/fop-font-install
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%{_bindir}/fop-font-install
 
 %files
 %defattr(644,root,root,755)
