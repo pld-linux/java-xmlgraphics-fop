@@ -2,7 +2,7 @@
 Summary:	XSL Formatter in Java
 Summary(pl):	Formater XSL napisany w Javie
 Name:		Fop
-Version:	0.20.0
+Version:	0.20.1
 Release:	1
 Vendor:		xml.apache.org
 License:	Apache Software License (BSD-like)
