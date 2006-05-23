@@ -46,7 +46,8 @@ dokument DOM lub (w przypadku XT) zdarzenia SAX.
 %setup -q
 
 %build
-required_jars='tools ant xml-apis xercesImpl xalan'
+required_jars='ant xml-commons-apis xercesImpl xalan batik'
+CLASSPATH="%{_jvmlibdir}/java/lib/tools.jar"
 export CLASSPATH="$CLASSPATH:`/usr/bin/build-classpath $required_jars`"
 export JAVA_HOME=%{java_home}
 export JAVAC=%{javac}
