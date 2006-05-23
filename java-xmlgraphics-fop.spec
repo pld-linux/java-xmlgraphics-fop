@@ -1,10 +1,11 @@
+%include	/usr/lib/rpm/macros.java
 Summary:	XSL Formatter in Java
 Summary(pl):	Formater XSL napisany w Javie
 Name:		fop
 Version:	0.20.5
 Release:	1
 Vendor:		http://xml.apache.org/
-License:	Apache
+License:	Apache v1.1
 Group:		Applications/Publishing/XML/Java
 Source0:	http://www.apache.org/dist/xml/fop/source/%{name}-%{version}-src.tar.gz
 # Source0-md5:	1a31eb1357e5d4b8d32d4cb3edae2da2
@@ -23,7 +24,6 @@ Requires:	xerces-j
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_javaclassdir		%{_libdir}/java
 %define		_fop_font_metrics	/var/lib/fop
 
 %description
@@ -46,14 +46,17 @@ dokument DOM lub (w przypadku XT) zdarzenia SAX.
 %setup -q
 
 %build
-JAVA_HOME=%{_libdir}/java
-export JAVA_HOME
+required_jars='tools ant xml-apis xercesImpl xalan'
+export CLASSPATH="$CLASSPATH:`/usr/bin/build-classpath $required_jars`"
+export JAVA_HOME=%{java_home}
+export JAVAC=%{javac}
+export JAVA=%{java}
 
-sh build.sh
+%{ant}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_javaclassdir},%{_fop_font_metrics},%{_bindir}} \
+install -d $RPM_BUILD_ROOT{%{_javadir},%{_fop_font_metrics},%{_bindir}} \
 	$RPM_BUILD_ROOT%{_fontsdir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/fop-font-install
@@ -62,7 +65,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/fop
 # create empty config file
 echo > $RPM_BUILD_ROOT%{_fontsdir}/fop-font.config
 
-install lib/avalon-framework-cvs-20020806.jar build/fop.jar $RPM_BUILD_ROOT%{_javaclassdir}
+install lib/avalon-framework-cvs-20020806.jar build/fop.jar $RPM_BUILD_ROOT%{_javadir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -72,8 +75,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE README STATUS
+%doc CHANGES README STATUS
 %dir %{_fop_font_metrics}
 %attr(755,root,root) %{_bindir}/*
-%{_javaclassdir}/*
+%{_javadir}/*
 %{_fontsdir}/*.config
