@@ -1,19 +1,18 @@
-%include	/usr/lib/rpm/macros.java
 Summary:	XSL Formatter in Java
 Summary(pl):	Formater XSL napisany w Javie
 Name:		fop
 Version:	0.20.5
 Release:	1
-Vendor:		http://xml.apache.org/
 License:	Apache v1.1
 Group:		Applications/Publishing/XML/Java
 Source0:	http://www.apache.org/dist/xml/fop/source/%{name}-%{version}-src.tar.gz
 # Source0-md5:	1a31eb1357e5d4b8d32d4cb3edae2da2
-Source1:	fop-font-install.sh
-Source2:	fop.sh
+Source1:	%{name}-font-install.sh
+Source2:	%{name}.sh
 URL:		http://xml.apache.org/fop/
 BuildRequires:	batik
 BuildRequires:	jdk >= 1.3
+BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	xalan-j
 BuildRequires:	xerces-j
 Requires:	batik
