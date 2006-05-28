@@ -13,16 +13,16 @@ Source0:	%{name}-%{_snap}-svn.tar.bz2
 Source1:	%{name}-font-install.sh
 Source2:	%{name}.sh
 URL:		http://xml.apache.org/fop/
+BuildRequires:	avalon-framework
 BuildRequires:	batik
 BuildRequires:	jce
 BuildRequires:	jdk >= 1.3
+BuildRequires:	jeuclid
 BuildRequires:	junit
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	xalan-j
 BuildRequires:	xerces-j
 BuildRequires:	xmlunit
-BuildRequires:	avalon-framework
-BuildRequires:	jeuclid
 Requires:	batik
 Requires:	freetype1
 Requires:	jre >= 1.3
