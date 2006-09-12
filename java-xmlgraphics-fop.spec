@@ -52,7 +52,7 @@ export JAVA_HOME=%{java_home}
 export JAVAC=%{javac}
 export JAVA=%{java}
 
-%{ant}
+%ant
 
 %install
 rm -rf $RPM_BUILD_ROOT
