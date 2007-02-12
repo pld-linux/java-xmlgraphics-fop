@@ -1,5 +1,5 @@
 Summary:	XSL Formatter in Java
-Summary(pl):	Formater XSL napisany w Javie
+Summary(pl.UTF-8):   Formater XSL napisany w Javie
 Name:		fop
 Version:	0.20.5
 Release:	1
@@ -33,12 +33,12 @@ be in the form of an XML document (output by an XSLT engine like XT or
 Xalan) or can be passed in memory as a DOM Document or (in the case of
 XT) SAX events.
 
-%description -l pl
-FOP to pierwszy na ¶wiecie program formatuj±cy wydruki sterowany
-obiektami formatuj±cymi XSL. To jest aplikacja Javy czytaj±ca drzewo
-obiektów formatuj±cych i przekszta³caj±ca je w dokument PDF. Drzewo
-obiektów formatuj±cych mo¿e byæ w formie dokumentu XML (wyj¶cia z
-silnika XSLT takiego jak XT lub Xalan) lub byæ przekazane jako
+%description -l pl.UTF-8
+FOP to pierwszy na Å›wiecie program formatujÄ…cy wydruki sterowany
+obiektami formatujÄ…cymi XSL. To jest aplikacja Javy czytajÄ…ca drzewo
+obiektÃ³w formatujÄ…cych i przeksztaÅ‚cajÄ…ca je w dokument PDF. Drzewo
+obiektÃ³w formatujÄ…cych moÅ¼e byÄ‡ w formie dokumentu XML (wyjÅ›cia z
+silnika XSLT takiego jak XT lub Xalan) lub byÄ‡ przekazane jako
 dokument DOM lub (w przypadku XT) zdarzenia SAX.
 
 %prep
