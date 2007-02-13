@@ -1,5 +1,5 @@
 Summary:	XSL Formatter in Java
-Summary(pl.UTF-8):   Formater XSL napisany w Javie
+Summary(pl.UTF-8):	Formater XSL napisany w Javie
 Name:		fop
 Version:	0.20.5
 Release:	1
