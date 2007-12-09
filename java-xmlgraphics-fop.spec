@@ -17,7 +17,7 @@ BuildRequires:	xalan-j
 BuildRequires:	xerces-j
 Requires:	batik
 Requires:	freetype1
-Requires:	jre >= 1.3
+Requires:	jpackage-utils
 Requires:	xalan-j
 Requires:	xerces-j
 BuildArch:	noarch
@@ -78,5 +78,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGES README STATUS
 %dir %{_fop_font_metrics}
 %attr(755,root,root) %{_bindir}/*
-%{_javadir}/*
+%{_javadir}/*.jar
 %{_fontsdir}/*.config
