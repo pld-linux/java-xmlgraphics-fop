@@ -31,7 +31,7 @@ BuildRequires:	java-commons-logging
 BuildRequires:	jakarta-servletapi5
 BuildRequires:	xmlgraphics-commons
 Requires:	batik
-Requires:	freetype1
+Requires:	freetype
 Requires:	jpackage-utils
 Requires:	jre
 Requires:	java-commons-io
