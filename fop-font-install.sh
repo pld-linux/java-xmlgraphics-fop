@@ -2,7 +2,7 @@
 
 FONTDIR=/usr/share/fonts
 TTF_DIR=$FONTDIR/TTF
-TTF_TOOL=/usr/bin/ttmkfdir
+TTF_TOOL=/usr/bin/mkfontdir
 FOP_CONF=$FONTDIR/fop-font.config
 
 CLASSPATH=$(build-classpath fop jimi xml-apis xalan xercesImpl commons-logging commons-io xmlgraphics-commons)
@@ -14,7 +14,7 @@ for font in  $TTF_DIR/*.ttf; do
 done
 
 # create configuration file
-$TTF_TOOL -d $TTF_DIR | awk '
+$TTF_TOOL $TTF_DIR | awk '
     BEGIN { 
         print "<configuration>" 
         print "<fonts>"
