@@ -1,21 +1,6 @@
 # TODO:
 # - Some test fails. Reason of some failures is obvious:
 #   [junit] No X11 DISPLAY variable was set, but this program performed an operation which requires it.
-# - Does not builds:
-#   [javac] /home/users/z/rpm/BUILD/fop-0.95/test/java/org/apache/fop/intermediate/AreaTreeParserTestCase.java:103:
-#cannot find symbol
-#   [javac] symbol  : variable super
-#   [javac] location: class org.apache.fop.intermediate.AreaTreeParserTestCase
-#   [javac]         super.setUp();
-#   [javac]         ^
-#   [javac] /home/users/z/rpm/BUILD/fop-0.95/test/java/org/apache/fop/intermediate/AreaTreeParserTestCase.java:137:
-#cannot find symbol
-#   [javac] symbol  : method
-#assertXMLEqual(org.w3c.dom.Document,org.w3c.dom.Document)
-#   [javac] location: class org.apache.fop.intermediate.AreaTreeParserTestCase
-#   [javac]         assertXMLEqual(intermediate, doc);
-#   [javac]         ^
-#   some BRs are missing?
 #
 # Conditional build:
 %bcond_without  tests           # build without tests
@@ -31,6 +16,7 @@ Source0:	http://archive.apache.org/dist/xmlgraphics/fop/source/fop-0.95-src.zip
 # Source0-md5:	adeb416f81125d8554a621050f319632
 Source1:	%{name}-font-install.sh
 Source2:	%{name}.sh
+Patch0:		%{name}-nojunit.patch
 URL:		http://xmlgrapics.apache.org/fop/
 BuildRequires:	batik
 BuildRequires:	jdk >= 1.3
@@ -39,12 +25,20 @@ BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	xalan-j
 BuildRequires:	xerces-j
 %{?with_tests:BuildRequires:	xmlunit}
+BuildRequires:	java-commons-io
+BuildRequires:	java-commons-logging
+BuildRequires:	jakarta-servletapi5
+BuildRequires:	xmlgraphics-commons
 Requires:	batik
 Requires:	freetype1
 Requires:	jpackage-utils
 Requires:	jre
+Requires:	java-commons-io
+Requires:	java-commons-logging
+Requires:	jakarta-servletapi5
 Requires:	xalan-j
 Requires:	xerces-j
+Requires:	xmlgraphics-commons
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -69,14 +63,27 @@ dokument DOM lub (w przypadku XT) zdarzenia SAX.
 %prep
 %setup -q
 
-%build
-required_jars='ant xml-commons-apis xercesImpl xalan batik'
-CLASSPATH="%{_jvmlibdir}/java/lib/tools.jar"
-export CLASSPATH="$CLASSPATH:`/usr/bin/build-classpath $required_jars`"
-export JAVA_HOME=%{java_home}
-export JAVAC=%{javac}
-export JAVA=%{java}
+%if %{without tests}
+%patch0 -p1
+%endif
 
+# We do want to use system libs
+# br_jars='commons-io commons-logging avalon-framework-api serializer servlet xmlgraphics-commons xml-apis-ext xercesImpl xalan batik batik/*'
+rm lib/*
+# for jar in $br_jars; do
+#   ln -s $(find-jar $jar) lib
+# done
+
+%build
+# required_jars='ant'
+# CLASSPATH="%{_jvmlibdir}/java/lib/tools.jar"
+# export CLASSPATH="$CLASSPATH:`/usr/bin/build-classpath $required_jars`"
+# export JAVA_HOME=%{java_home}
+# export JAVAC=%{javac}
+# export JAVA=%{java}
+
+br_jars='commons-io commons-logging avalon-framework-api serializer servlet xmlgraphics-commons xml-apis-ext xercesImpl xalan batik'
+export CLASSPATH=$(build-classpath $br_jars):$(build-classpath-directory /usr/share/java/batik)
 %ant \
 %if %{without tests}
 	-Djunit.present=false \
