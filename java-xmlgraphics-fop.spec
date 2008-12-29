@@ -78,7 +78,7 @@ export JAVAC=%{javac}
 export JAVA=%{java}
 
 %ant \
-%if %{with tests}
+%if %{without tests}
 	-Djunit.present=false \
 	-Dxmlunit.present=false
 %endif
