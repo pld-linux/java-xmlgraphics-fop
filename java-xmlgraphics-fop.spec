@@ -1,7 +1,24 @@
 # TODO:
 # - Some test fails. Reason of some failures is obvious:
 #   [junit] No X11 DISPLAY variable was set, but this program performed an operation which requires it.
-#   what should we do? Skip these tests? Skip all tests? add bcond --without test?
+# - Does not builds:
+#   [javac] /home/users/z/rpm/BUILD/fop-0.95/test/java/org/apache/fop/intermediate/AreaTreeParserTestCase.java:103:
+#cannot find symbol
+#   [javac] symbol  : variable super
+#   [javac] location: class org.apache.fop.intermediate.AreaTreeParserTestCase
+#   [javac]         super.setUp();
+#   [javac]         ^
+#   [javac] /home/users/z/rpm/BUILD/fop-0.95/test/java/org/apache/fop/intermediate/AreaTreeParserTestCase.java:137:
+#cannot find symbol
+#   [javac] symbol  : method
+#assertXMLEqual(org.w3c.dom.Document,org.w3c.dom.Document)
+#   [javac] location: class org.apache.fop.intermediate.AreaTreeParserTestCase
+#   [javac]         assertXMLEqual(intermediate, doc);
+#   [javac]         ^
+#   some BRs are missing?
+#
+# Conditional build:
+%bcond_without  tests           # build without tests
 #
 Summary:	XSL Formatter in Java
 Summary(pl.UTF-8):	Formater XSL napisany w Javie
@@ -17,10 +34,11 @@ Source2:	%{name}.sh
 URL:		http://xmlgrapics.apache.org/fop/
 BuildRequires:	batik
 BuildRequires:	jdk >= 1.3
-BuildRequires:	junit
+%{?with_tests:BuildRequires:	junit}
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	xalan-j
 BuildRequires:	xerces-j
+%{?with_tests:BuildRequires:	xmlunit}
 Requires:	batik
 Requires:	freetype1
 Requires:	jpackage-utils
@@ -59,7 +77,11 @@ export JAVA_HOME=%{java_home}
 export JAVAC=%{javac}
 export JAVA=%{java}
 
-%ant
+%ant \
+%if %{with tests}
+	-Djunit.present=false \
+	-Dxmlunit.present=false
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
