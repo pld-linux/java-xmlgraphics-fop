@@ -1,6 +1,7 @@
 # TODO:
 # - Some test fails. Reason of some failures is obvious:
 #   [junit] No X11 DISPLAY variable was set, but this program performed an operation which requires it.
+# - Where should we %%install fop.war file?
 #
 # Conditional build:
 %bcond_without  tests           # build without tests
@@ -101,7 +102,12 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/fop
 # create empty config file
 echo > $RPM_BUILD_ROOT%{_fontsdir}/fop-font.config
 
-install lib/avalon-framework-cvs-20020806.jar build/fop.jar $RPM_BUILD_ROOT%{_javadir}
+cd build
+for jar in fop*.jar; do
+  base=$(basename $jar .jar)
+  install $jar $RPM_BUILD_ROOT%{_javadir}/$base-%{version}.jar
+  ln -s $base-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/$base.jar
+done
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -111,8 +117,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES README STATUS
+%doc KEYS NOTICE README known-issues.xml
 %dir %{_fop_font_metrics}
-%attr(755,root,root) %{_bindir}/*
-%{_javadir}/*.jar
-%{_fontsdir}/*.config
+%attr(755,root,root) %{_bindir}/fop
+%attr(755,root,root) %{_bindir}/fop-font-install
+%{_javadir}/fop*.jar
+%{_fontsdir}/fop-font.config
