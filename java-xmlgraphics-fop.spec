@@ -1,31 +1,30 @@
+# TODO:
+# - Some test fails. Reason of some failures is obvious:
+#   [junit] No X11 DISPLAY variable was set, but this program performed an operation which requires it.
+#   what should we do? Skip these tests? Skip all tests? add bcond --without test?
+#
 Summary:	XSL Formatter in Java
-Summary(pl.UTF-8):   Formater XSL napisany w Javie
+Summary(pl.UTF-8):	Formater XSL napisany w Javie
 Name:		fop
-Version:	0.92
-%define	_snap	409208
-Release:	0.%{_snap}.1
+Version:	0.95
+Release:	0.1
 License:	Apache v1.1
 Group:		Applications/Publishing/XML/Java
-#Source0:	http://www.apache.org/dist/xml/fop/source/%{name}-%{version}-src.tar.bz2
-# http://svn.apache.org/repos/asf/xmlgraphics/fop/branches/fop-0_92/
-Source0:	%{name}-%{_snap}-svn.tar.bz2
-# Source0-md5:	50ecf2fd3b474b83ca95f4489fd28b3c
+Source0:	http://archive.apache.org/dist/xmlgraphics/fop/source/fop-0.95-src.zip
+# Source0-md5:	adeb416f81125d8554a621050f319632
 Source1:	%{name}-font-install.sh
 Source2:	%{name}.sh
-URL:		http://xml.apache.org/fop/
-BuildRequires:	avalon-framework
+URL:		http://xmlgrapics.apache.org/fop/
 BuildRequires:	batik
-BuildRequires:	jce
 BuildRequires:	jdk >= 1.3
-BuildRequires:	jeuclid
 BuildRequires:	junit
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	xalan-j
 BuildRequires:	xerces-j
-BuildRequires:	xmlunit
 Requires:	batik
 Requires:	freetype1
-Requires:	jre >= 1.3
+Requires:	jpackage-utils
+Requires:	jre
 Requires:	xalan-j
 Requires:	xerces-j
 BuildArch:	noarch
@@ -50,17 +49,17 @@ silnika XSLT takiego jak XT lub Xalan) lub być przekazane jako
 dokument DOM lub (w przypadku XT) zdarzenia SAX.
 
 %prep
-%setup -q -n %{name}-svn
+%setup -q
 
 %build
-required_jars='ant xml-commons-apis xercesImpl xalan batik junit xmlunit commons-io xmlgraphics-commons servlet jce'
+required_jars='ant xml-commons-apis xercesImpl xalan batik'
 CLASSPATH="%{_jvmlibdir}/java/lib/tools.jar"
 export CLASSPATH="$CLASSPATH:`/usr/bin/build-classpath $required_jars`"
 export JAVA_HOME=%{java_home}
 export JAVAC=%{javac}
 export JAVA=%{java}
 
-%{ant}
+%ant
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -86,5 +85,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGES README STATUS
 %dir %{_fop_font_metrics}
 %attr(755,root,root) %{_bindir}/*
-%{_javadir}/*
+%{_javadir}/*.jar
 %{_fontsdir}/*.config
