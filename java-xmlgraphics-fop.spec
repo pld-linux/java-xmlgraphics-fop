@@ -2,6 +2,7 @@
 # - Some test fails. Reason of some failures is obvious:
 #   [junit] No X11 DISPLAY variable was set, but this program performed an operation which requires it.
 # - Where should we %%install fop.war file?
+# - is freetype really required?
 #
 # Conditional build:
 %bcond_without  tests           # build without tests
@@ -13,31 +14,33 @@ Version:	0.95
 Release:	0.1
 License:	Apache v1.1
 Group:		Applications/Publishing/XML/Java
-Source0:	http://archive.apache.org/dist/xmlgraphics/fop/source/fop-0.95-src.zip
+Source0:	http://archive.apache.org/dist/xmlgraphics/fop/source/%{name}-%{version}-src.zip
 # Source0-md5:	adeb416f81125d8554a621050f319632
 Source1:	%{name}-font-install.sh
 Source2:	%{name}.sh
 Patch0:		%{name}-nojunit.patch
 URL:		http://xmlgrapics.apache.org/fop/
 BuildRequires:	batik
+BuildRequires:	jakarta-servletapi5
+BuildRequires:	java-commons-io
+BuildRequires:	java-commons-logging
 BuildRequires:	jdk >= 1.3
+BuildRequires:	jpackage-utils
 %{?with_tests:BuildRequires:	junit}
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	xalan-j
 BuildRequires:	xerces-j
-%{?with_tests:BuildRequires:	xmlunit}
-BuildRequires:	java-commons-io
-BuildRequires:	java-commons-logging
-BuildRequires:	jakarta-servletapi5
-BuildRequires:	jpackage-utils
 BuildRequires:	xmlgraphics-commons
+%{?with_tests:BuildRequires:	xmlunit}
+Requires(post):	xorg-app-mkfontdir
+Requires(post)	awk
 Requires:	batik
 Requires:	freetype
-Requires:	jpackage-utils
-Requires:	jre
+Requires:	jakarta-servletapi5
 Requires:	java-commons-io
 Requires:	java-commons-logging
-Requires:	jakarta-servletapi5
+Requires:	jpackage-utils
+Requires:	jre
 Requires:	xalan-j
 Requires:	xerces-j
 Requires:	xmlgraphics-commons
@@ -79,13 +82,13 @@ rm lib/*
 %build
 # required_jars='ant'
 # CLASSPATH="%{_jvmlibdir}/java/lib/tools.jar"
-# export CLASSPATH="$CLASSPATH:`/usr/bin/build-classpath $required_jars`"
+# export CLASSPATH="$CLASSPATH:`%{_bindir}/build-classpath $required_jars`"
 # export JAVA_HOME=%{java_home}
 # export JAVAC=%{javac}
 # export JAVA=%{java}
 
 br_jars='commons-io commons-logging avalon-framework-api serializer servlet xmlgraphics-commons xml-apis-ext xercesImpl xalan batik'
-export CLASSPATH=$(build-classpath $br_jars):$(build-classpath-directory /usr/share/java/batik)
+export CLASSPATH=$(build-classpath $br_jars):$(build-classpath-directory %{_javadir}/batik)
 %ant \
 %if %{without tests}
 	-Djunit.present=false \
