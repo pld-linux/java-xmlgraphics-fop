@@ -33,7 +33,7 @@ BuildRequires:	xerces-j
 BuildRequires:	xmlgraphics-commons
 %{?with_tests:BuildRequires:	xmlunit}
 Requires(post):	xorg-app-mkfontdir
-Requires(post)	awk
+Requires(post):	awk
 Requires:	batik
 Requires:	freetype
 Requires:	jakarta-servletapi5
