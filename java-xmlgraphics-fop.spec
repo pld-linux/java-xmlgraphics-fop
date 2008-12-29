@@ -29,6 +29,7 @@ BuildRequires:	xerces-j
 BuildRequires:	java-commons-io
 BuildRequires:	java-commons-logging
 BuildRequires:	jakarta-servletapi5
+BuildRequires:	jpackage-utils
 BuildRequires:	xmlgraphics-commons
 Requires:	batik
 Requires:	freetype
