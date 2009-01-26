@@ -1,4 +1,7 @@
 # TODO:
+# - this shell wrapper does not work at all. It should be rewriten using
+#   build-classpath and "java -jar".
+# - review dependencies.
 # - Some test fails. Reason of some failures is obvious:
 #   [junit] No X11 DISPLAY variable was set, but this program performed an operation which requires it.
 # - Where should we %%install fop.war file?
