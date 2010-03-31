@@ -1,0 +1,11 @@
+--- fop-0.95/build.xml~	2008-07-31 16:02:59.000000000 +0200
++++ fop-0.95/build.xml	2010-03-31 18:38:38.000000000 +0200
+@@ -914,7 +914,7 @@
+     </junit>
+   </target>
+ 
+-  <target name="junit" depends="junit-userconfig, junit-basic, junit-transcoder, junit-text-linebreak, junit-layout, junit-fotree, junit-intermediate-format" description="Runs all of FOP's JUnit tests" if="junit.present">
++  <target name="junit" depends="junit-userconfig, junit-basic, junit-text-linebreak, junit-layout, junit-fotree, junit-intermediate-format" description="Runs all of FOP's JUnit tests" if="junit.present">
+     <fail>
+       <condition>
+         <or>
