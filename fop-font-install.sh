@@ -5,7 +5,7 @@ TTF_DIR=$FONTDIR/TTF
 TTF_TOOL=/usr/bin/ttmkfdir
 FOP_CONF=$FONTDIR/fop-font.config
 
-jars="fop xml-apis xalan xerces commons-io xmlgraphics-commons"
+jars="fop xml-apis xalan xerces-j2 commons-io xmlgraphics-commons"
 
 CLASSPATH=$(build-classpath $jars)
 export CLASSPATH
