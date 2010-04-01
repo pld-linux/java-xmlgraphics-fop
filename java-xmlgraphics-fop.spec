@@ -29,21 +29,25 @@ URL:		http://xmlgrapics.apache.org/fop/
 BuildRequires:	batik
 BuildRequires:	glibc-localedb-all
 %{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
-%{?with_java_sun:BuildRequires:	java-sun}
-BuildRequires:	jpackage-utils
 %{?with_tests:BuildRequires:	java-junit}
+%{?with_java_sun:BuildRequires:	java-sun}
+BuildRequires:	java-xalan
+BuildRequires:	java-xerces
 %{?with_tests:BuildRequires:	java-xmlunit}
+BuildRequires:	jpackage-utils
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-BuildRequires:	xalan-j
-BuildRequires:	xerces-j
 Requires:	batik
+Requires:	commons-io
 Requires:	freetype1
+Requires:	java-xalan
+Requires:	java-xerces
+Requires:	java-xerces
 Requires:	jpackage-utils
-Requires:	xalan-j
-Requires:	xerces-j
-Patch0:		fop-disableX11tests.patch
+Requires:	ttmkfdir
+Requires:	xmlgraphics-commons
+Patch0:		%{name}-disableX11tests.patch
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -73,7 +77,7 @@ dokument DOM lub (w przypadku XT) zdarzenia SAX.
 %build
 required_jars='ant xml-commons-apis xercesImpl xalan batik'
 CLASSPATH="%{_jvmlibdir}/java/lib/tools.jar"
-CLASSPATH="$CLASSPATH:$(/usr/bin/build-classpath $required_jars)"
+CLASSPATH="$CLASSPATH:$(%{_bindir}/build-classpath $required_jars)"
 export JAVA_HOME=%{java_home}
 export JAVAC=%{javac}
 export JAVA=%{java}
@@ -84,7 +88,7 @@ export LC_ALL=en_US # source code not US-ASCII
 
 %if %{with tests}
 required_jars='xmlunit junit'
-CLASSPATH="$CLASSPATH:$(/usr/bin/build-classpath $required_jars)"
+CLASSPATH="$CLASSPATH:$(%{_bindir}/build-classpath $required_jars)"
 %ant -Dbuild.sysclasspath=first
 %endif
 
