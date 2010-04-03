@@ -22,9 +22,8 @@ Source2:	fop.sh
 URL:		http://xmlgrapics.apache.org/fop/
 BuildRequires:	batik
 BuildRequires:	glibc-localedb-all
-%{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
 %{?with_tests:BuildRequires:	java-junit}
-%{?with_java_sun:BuildRequires:	java-sun}
+BuildRequires:	java-sun
 BuildRequires:	java-xalan
 BuildRequires:	java-xerces
 %{?with_tests:BuildRequires:	java-xmlunit}
@@ -121,7 +120,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc KEYS README
 %dir %{_fop_font_metrics}
-%{_javadir}/*.jar
+%{_javadir}/%{srcname}.jar
+%{_javadir}/%{srcname}-%{version}.jar
 %{_fontsdir}/*.config
 %attr(755,root,root) %{_bindir}/fop-font-install
 
