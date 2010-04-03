@@ -40,6 +40,7 @@ Requires:	java-xerces
 Requires:	java-xmlgraphics-batik
 Requires:	java-xmlgraphics-commons
 Requires:	jpackage-utils
+Requires:	jre-X11
 Requires:	ttmkfdir
 Patch0:		fop-disableX11tests.patch
 BuildArch:	noarch
