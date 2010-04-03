@@ -2,29 +2,23 @@
 # TODO:
 # - Tests are temporarily disabled, because even if all tests passes ant still
 #   thinks that some tests failed.
-# - package avalon. This package should not provide it.
-
-%if "%{pld_release}" == "ti"
-%bcond_without	java_sun	# build with gcj
-%else
-%bcond_with	java_sun	# build with java-sun
-%endif
 
 %bcond_with	tests		# perform tests, broken, see TODO
 
 %include	/usr/lib/rpm/macros.java
 
+%define		srcname	xmlgraphics-fop
 Summary:	XSL Formatter in Java
 Summary(pl.UTF-8):	Formater XSL napisany w Javie
-Name:		fop
+Name:		java-xmlgraphics-fop
 Version:	0.95
 Release:	1
-License:	Apache v1.1
+License:	Apache v2.0
 Group:		Applications/Publishing/XML/Java
-Source0:	http://www.apache.org/dist/xmlgraphics/fop/source/%{name}-%{version}-src.tar.gz
+Source0:	http://www.apache.org/dist/xmlgraphics/fop/source/fop-%{version}-src.tar.gz
 # Source0-md5:	58593e6c86be17d7dc03c829630fd152
-Source1:	%{name}-font-install.sh
-Source2:	%{name}.sh
+Source1:	fop-font-install.sh
+Source2:	fop.sh
 URL:		http://xmlgrapics.apache.org/fop/
 BuildRequires:	batik
 BuildRequires:	glibc-localedb-all
@@ -39,15 +33,15 @@ BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	batik
-Requires:	commons-io
 Requires:	freetype1
+Requires:	java-commons-io
 Requires:	java-xalan
 Requires:	java-xerces
 Requires:	java-xerces
+Requires:	java-xmlgraphics-commons
 Requires:	jpackage-utils
 Requires:	ttmkfdir
-Requires:	xmlgraphics-commons
-Patch0:		%{name}-disableX11tests.patch
+Patch0:		fop-disableX11tests.patch
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -69,8 +63,17 @@ obiektów formatujących może być w formie dokumentu XML (wyjścia z
 silnika XSLT takiego jak XT lub Xalan) lub być przekazane jako
 dokument DOM lub (w przypadku XT) zdarzenia SAX.
 
+%package -n fop
+Summary:	fop commandline utility
+Group:		Applications/Publishing
+Requires:	%{name} = %{version}-%{release}
+
+%description -n fop
+Shell script that allows to use java-xmlgraphics-fop as standalone
+application.
+
 %prep
-%setup -q
+%setup -q -n fop-%{version}
 
 %{?with_tests:%patch0 -p1}
 
@@ -103,12 +106,9 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/fop
 # create empty config file
 echo > $RPM_BUILD_ROOT%{_fontsdir}/fop-font.config
 
-# TODO ugly, ugly, ugly hack
-install lib/avalon-framework-4.2.0.jar $RPM_BUILD_ROOT%{_javadir}
-
 # jars
-cp -a build/%{name}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
-ln -s %{name}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}.jar
+cp -a build/fop.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}-%{version}.jar
+ln -s %{srcname}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}.jar
 
 
 %clean
@@ -121,6 +121,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc KEYS README
 %dir %{_fop_font_metrics}
-%attr(755,root,root) %{_bindir}/*
 %{_javadir}/*.jar
 %{_fontsdir}/*.config
+%attr(755,root,root) %{_bindir}/fop-font-install
+
+%files -n fop
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/fop
