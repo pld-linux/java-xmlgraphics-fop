@@ -17,7 +17,7 @@ for font in  $TTF_DIR/*.ttf; do
 done
 
 # create configuration file
-$TTF_TOOL -d $TTF_DIR | awk '
+$TTF_TOOL -d $TTF_DIR -o - | awk '
     BEGIN { 
         print "<configuration>" 
         print "<fonts>"
