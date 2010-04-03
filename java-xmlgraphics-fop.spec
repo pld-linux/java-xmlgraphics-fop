@@ -20,24 +20,24 @@ Source0:	http://www.apache.org/dist/xmlgraphics/fop/source/fop-%{version}-src.ta
 Source1:	fop-font-install.sh
 Source2:	fop.sh
 URL:		http://xmlgrapics.apache.org/fop/
-BuildRequires:	java-xmlgraphics-batik
 BuildRequires:	glibc-localedb-all
 %{?with_tests:BuildRequires:	java-junit}
 BuildRequires:	java-sun
 BuildRequires:	java-xalan
 BuildRequires:	java-xerces
+BuildRequires:	java-xmlgraphics-batik
 %{?with_tests:BuildRequires:	java-xmlunit}
 BuildRequires:	jpackage-utils
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-Requires:	java-xmlgraphics-batik
 Requires:	freetype1
 Requires:	java-avalon-framework
 Requires:	java-commons-io
 Requires:	java-xalan
 Requires:	java-xerces
 Requires:	java-xerces
+Requires:	java-xmlgraphics-batik
 Requires:	java-xmlgraphics-commons
 Requires:	jpackage-utils
 Requires:	ttmkfdir
