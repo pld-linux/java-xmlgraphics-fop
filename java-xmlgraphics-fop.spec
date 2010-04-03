@@ -12,7 +12,7 @@ Summary:	XSL Formatter in Java
 Summary(pl.UTF-8):	Formater XSL napisany w Javie
 Name:		java-xmlgraphics-fop
 Version:	0.95
-Release:	2
+Release:	3
 License:	Apache v2.0
 Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/xmlgraphics/fop/source/fop-%{version}-src.tar.gz
@@ -33,6 +33,7 @@ BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	java-xmlgraphics-batik
 Requires:	freetype1
+Requires:	java-avalon-framework
 Requires:	java-commons-io
 Requires:	java-xalan
 Requires:	java-xerces
