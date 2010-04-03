@@ -3,14 +3,7 @@
 FONTDIR=/usr/share/fonts
 FOP_CONF=$FONTDIR/fop-font.config
 
-JCL=/usr/lib/java
+jars="fop avalon-framework xalan xerces-j2 batik"
+CLASSPATH=$(build-classpath $jars)
 
-CLASSPATH=$JCL/fop.jar
-CLASSPATH=$CLASSPATH:$JCL/jimi-1.0.jar
-CLASSPATH=$CLASSPATH:$JCL/logkit-1.0b4.jar
-CLASSPATH=$CLASSPATH:$JCL/avalon-framework-4.0.jar
-CLASSPATH=$CLASSPATH:$JCL/xalan.jar
-CLASSPATH=$CLASSPATH:$JCL/xerces.jar
-CLASSPATH=$CLASSPATH:$JCL/batik/batik.jar
-
-java -classpath $CLASSPATH org.apache.fop.apps.Fop -c $FOP_CONF $@
+exec java -classpath $CLASSPATH org.apache.fop.apps.Fop -c $FOP_CONF $@
