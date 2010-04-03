@@ -12,15 +12,15 @@ Summary:	XSL Formatter in Java
 Summary(pl.UTF-8):	Formater XSL napisany w Javie
 Name:		java-xmlgraphics-fop
 Version:	0.95
-Release:	1
+Release:	2
 License:	Apache v2.0
-Group:		Applications/Publishing/XML/Java
+Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/xmlgraphics/fop/source/fop-%{version}-src.tar.gz
 # Source0-md5:	58593e6c86be17d7dc03c829630fd152
 Source1:	fop-font-install.sh
 Source2:	fop.sh
 URL:		http://xmlgrapics.apache.org/fop/
-BuildRequires:	batik
+BuildRequires:	java-xmlgraphics-batik
 BuildRequires:	glibc-localedb-all
 %{?with_tests:BuildRequires:	java-junit}
 BuildRequires:	java-sun
@@ -31,7 +31,7 @@ BuildRequires:	jpackage-utils
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-Requires:	batik
+Requires:	java-xmlgraphics-batik
 Requires:	freetype1
 Requires:	java-commons-io
 Requires:	java-xalan
@@ -64,7 +64,7 @@ dokument DOM lub (w przypadku XT) zdarzenia SAX.
 
 %package -n fop
 Summary:	fop commandline utility
-Group:		Applications/Publishing
+Group:		Applications/Publishing/XML/Java
 Requires:	%{name} = %{version}-%{release}
 
 %description -n fop
@@ -77,7 +77,7 @@ application.
 %{?with_tests:%patch0 -p1}
 
 %build
-required_jars='ant xml-commons-apis xercesImpl xalan batik'
+required_jars='ant xml-commons-apis xercesImpl xalan xmlgraphics-batik'
 CLASSPATH="%{_jvmlibdir}/java/lib/tools.jar"
 CLASSPATH="$CLASSPATH:$(%{_bindir}/build-classpath $required_jars)"
 export JAVA_HOME=%{java_home}
