@@ -3,7 +3,8 @@
 FONTDIR=/usr/share/fonts
 TTF_DIR=$FONTDIR/TTF
 TTF_TOOL=/usr/bin/ttmkfdir
-FOP_CONF=$FONTDIR/fop-font.config
+FOPDIR=/var/lib/fop
+FOP_CONF=${FOP_CONF:-"$FOPDIR/fop-font.config"}
 
 jars="xmlgraphics-fop xml-apis xalan xerces-j2 commons-io xmlgraphics-commons"
 
@@ -13,7 +14,7 @@ export CLASSPATH
 # create font metric files
 for font in  $TTF_DIR/*.ttf; do
     java -classpath $CLASSPATH \
-        org.apache.fop.fonts.apps.TTFReader $font /var/lib/fop/$(basename $font .ttf).xml;
+        org.apache.fop.fonts.apps.TTFReader $font $FOPDIR/$(basename $font .ttf).xml;
 done
 
 # create configuration file
