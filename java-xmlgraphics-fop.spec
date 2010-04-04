@@ -36,7 +36,6 @@ Requires:	java-avalon-framework
 Requires:	java-commons-io
 Requires:	java-xalan
 Requires:	java-xerces
-Requires:	java-xerces
 Requires:	java-xmlgraphics-batik
 Requires:	java-xmlgraphics-commons
 Requires:	jpackage-utils
