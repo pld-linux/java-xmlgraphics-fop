@@ -2,6 +2,10 @@
 # TODO:
 # - Tests are temporarily disabled, because even if all tests passes ant still
 #   thinks that some tests failed.
+# - I'm not able to produce correct UTF-8 character in PDF/PNG output (-awt
+#   output works perfectly)
+# - fop-font-install.sh: generate config for other types of fonts (at least
+#   PFM fonts are supported)
 
 %bcond_with	tests		# perform tests, broken, see TODO
 
