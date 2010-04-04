@@ -103,9 +103,6 @@ install -d $RPM_BUILD_ROOT{%{_javadir},%{_fop_font_metrics},%{_bindir}} \
 install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/fop-font-install
 install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/fop
 
-# create empty config file
-echo > $RPM_BUILD_ROOT%{_fontsdir}/fop-font.config
-
 # jars
 cp -a build/fop.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}-%{version}.jar
 ln -s %{srcname}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}.jar
@@ -121,9 +118,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc KEYS README
 %dir %{_fop_font_metrics}
+%ghost %{_fop_font_metrics}/fop-font.config
 %{_javadir}/%{srcname}.jar
 %{_javadir}/%{srcname}-%{version}.jar
-%{_fontsdir}/*.config
 %attr(755,root,root) %{_bindir}/fop-font-install
 
 %files -n fop
