@@ -26,7 +26,7 @@ Source2:	fop.sh
 URL:		http://xmlgrapics.apache.org/fop/
 BuildRequires:	glibc-localedb-all
 %{?with_tests:BuildRequires:	java-junit}
-BuildRequires:	java-sun
+BuildRequires:	jdk
 BuildRequires:	java-xalan
 BuildRequires:	java-xerces
 BuildRequires:	java-xmlgraphics-batik
