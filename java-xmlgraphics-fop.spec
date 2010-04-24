@@ -110,7 +110,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/fop
 cp -a build/fop.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}-%{version}.jar
 ln -s %{srcname}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}.jar
 
-touch $RPM_BUILD_ROOT%{_fop_font_metrics}
+touch $RPM_BUILD_ROOT%{_fop_font_metrics}/fop-font.config
 
 %clean
 rm -rf $RPM_BUILD_ROOT
