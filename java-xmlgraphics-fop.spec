@@ -35,7 +35,7 @@ BuildRequires:	jpackage-utils
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	freetype1
-Requires:	java-apache-logging
+Requires:	java-commons-logging
 Requires:	java-avalon-framework
 Requires:	java-commons-io
 Requires:	java-xalan
