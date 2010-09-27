@@ -24,6 +24,8 @@ Source0:	http://www.apache.org/dist/xmlgraphics/fop/source/fop-%{version}-src.ta
 Source1:	fop-font-install.sh
 Source2:	fop.sh
 URL:		http://xmlgrapics.apache.org/fop/
+BuildRequires:	ant
+BuildRequires:	ant-trax
 BuildRequires:	glibc-localedb-all
 %{?with_tests:BuildRequires:	java-junit}
 BuildRequires:	java-xalan
