@@ -7,7 +7,7 @@
 FOPDIR=/var/lib/fop
 FOP_CONF=${FOP_CONF:-"$FOPDIR/fop-font.config"}
 
-jars="xmlgraphics-fop avalon-framework-api avalon-framework-impl commons-io xalan xerces-j2 xmlgraphics-batik xmlgraphics-batik/batik-util commons-logging"
+jars="xmlgraphics-fop avalon-framework-api avalon-framework-impl commons-io xalan xerces-j2 xmlgraphics-batik xmlgraphics-batik/ commons-logging"
 CLASSPATH=$(build-classpath $jars)
 MAIN_CLASS=org.apache.fop.cli.Main
 
