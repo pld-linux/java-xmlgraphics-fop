@@ -13,9 +13,9 @@ export CLASSPATH
 
 # create font metric files
 for font in  $TTF_DIR/*.ttf; do
-	if [ -f $font ]; then
+	if [ -f "$font" ]; then
 	    java -classpath $CLASSPATH \
-		org.apache.fop.fonts.apps.TTFReader $font $FOPDIR/$(basename $font .ttf).xml;
+		org.apache.fop.fonts.apps.TTFReader "$font" $FOPDIR/$(basename "$font" .ttf).xml;
 	fi
 done
 
