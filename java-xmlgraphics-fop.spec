@@ -15,15 +15,15 @@
 Summary:	XSL Formatter in Java
 Summary(pl.UTF-8):	Formater XSL napisany w Javie
 Name:		java-xmlgraphics-fop
-Version:	0.95
-Release:	6
+Version:	1.0
+Release:	1
 License:	Apache v2.0
 Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/xmlgraphics/fop/source/fop-%{version}-src.tar.gz
-# Source0-md5:	58593e6c86be17d7dc03c829630fd152
+# Source0-md5:	95dcc4c2dd08b4bc88ce9ce1ee88c439
 Source1:	fop-font-install.sh
 Source2:	fop.sh
-URL:		http://xmlgrapics.apache.org/fop/
+URL:		http://xmlgraphics.apache.org/fop/
 BuildRequires:	ant
 BuildRequires:	ant-trax
 BuildRequires:	glibc-localedb-all
@@ -36,6 +36,7 @@ BuildRequires:	jdk
 BuildRequires:	jpackage-utils
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
+Requires:	fonts-TTF-RedHat-liberation
 Requires:	freetype1
 Requires:	java-commons-logging
 Requires:	java-avalon-framework
