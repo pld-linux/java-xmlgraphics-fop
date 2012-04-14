@@ -1,4 +1,3 @@
-
 # TODO:
 # - Tests are temporarily disabled, because even if all tests passes ant still
 #   thinks that some tests failed.
@@ -9,14 +8,13 @@
 
 %bcond_with	tests		# perform tests, broken, see TODO
 
-%include	/usr/lib/rpm/macros.java
-
 %define		srcname	xmlgraphics-fop
+%include	/usr/lib/rpm/macros.java
 Summary:	XSL Formatter in Java
 Summary(pl.UTF-8):	Formater XSL napisany w Javie
 Name:		java-xmlgraphics-fop
 Version:	1.0
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/xmlgraphics/fop/source/fop-%{version}-src.tar.gz
@@ -36,11 +34,14 @@ BuildRequires:	jdk
 BuildRequires:	jpackage-utils
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
+Requires(post):	java-commons-io
+Requires(post):	java-xmlgraphics-commons
+Requires(post):	java-xml-commons-external
 Requires:	fonts-TTF-RedHat-liberation
 Requires:	freetype1
-Requires:	java-commons-logging
 Requires:	java-avalon-framework
 Requires:	java-commons-io
+Requires:	java-commons-logging
 Requires:	java-xalan
 Requires:	java-xerces
 Requires:	java-xmlgraphics-batik
@@ -107,11 +108,11 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_javadir},%{_fop_font_metrics},%{_bindir}} \
 	$RPM_BUILD_ROOT%{_fontsdir}
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/fop-font-install
-install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/fop
+install -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/fop-font-install
+install -p %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/fop
 
 # jars
-cp -a build/fop.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}-%{version}.jar
+cp -p build/fop.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}-%{version}.jar
 ln -s %{srcname}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}.jar
 
 touch $RPM_BUILD_ROOT%{_fop_font_metrics}/fop-font.config
