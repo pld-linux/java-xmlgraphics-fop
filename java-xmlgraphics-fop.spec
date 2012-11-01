@@ -21,6 +21,7 @@ Source0:	http://www.apache.org/dist/xmlgraphics/fop/source/fop-%{version}-src.ta
 # Source0-md5:	95dcc4c2dd08b4bc88ce9ce1ee88c439
 Source1:	fop-font-install.sh
 Source2:	fop.sh
+Patch0:		fop-disableX11tests.patch
 URL:		http://xmlgraphics.apache.org/fop/
 BuildRequires:	ant
 BuildRequires:	ant-trax
@@ -49,7 +50,6 @@ Requires:	java-xmlgraphics-commons
 Requires:	jpackage-utils
 Requires:	jre-X11
 Requires:	ttmkfdir
-Patch0:		fop-disableX11tests.patch
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -73,12 +73,17 @@ dokument DOM lub (w przypadku XT) zdarzenia SAX.
 
 %package -n fop
 Summary:	fop commandline utility
+Summary(pl.UTF-8):	Narzędzie fop działające z linii poleceń
 Group:		Applications/Publishing/XML/Java
 Requires:	%{name} = %{version}-%{release}
 
 %description -n fop
 Shell script that allows to use java-xmlgraphics-fop as standalone
 application.
+
+%description -n fop -l pl.UTF-8
+Skrypt powłoki powalający na używanie pakietu java-xmlgraphics-fop
+jako samodzielnej aplikacji.
 
 %prep
 %setup -q -n fop-%{version}
