@@ -15,7 +15,7 @@ MAIN_CLASS=org.apache.fop.cli.Main
 # an argument), don't override it.
 case " $*" in
   *' -c '*) FOP_CONFIG_OPTION="" ;;
-  *) FOP_CONFIG_OPTION="-c $FOP_CONFIG" ;;
+  *) FOP_CONFIG_OPTION="-c $FOP_CONF" ;;
 esac
 
-run $CONFIG ${1:+"$@"}
+run $FOP_CONFIG_OPTION ${1:+"$@"}
