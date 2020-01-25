@@ -9,7 +9,6 @@
 %bcond_with	tests		# perform tests, broken, see TODO
 
 %define		srcname	xmlgraphics-fop
-%include	/usr/lib/rpm/macros.java
 Summary:	XSL Formatter in Java
 Summary(pl.UTF-8):	Formater XSL napisany w Javie
 Name:		java-xmlgraphics-fop
