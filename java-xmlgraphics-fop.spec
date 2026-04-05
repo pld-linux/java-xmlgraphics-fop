@@ -8,12 +8,14 @@
 
 %bcond_with	tests		# perform tests, broken, see TODO
 
+%{?use_default_jdk:%use_default_jdk 8}
+
 %define		srcname	xmlgraphics-fop
 Summary:	XSL Formatter in Java
 Summary(pl.UTF-8):	Formater XSL napisany w Javie
 Name:		java-xmlgraphics-fop
 Version:	1.0
-Release:	2
+Release:	3
 License:	Apache v2.0
 Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/xmlgraphics/fop/source/fop-%{version}-src.tar.gz
@@ -30,10 +32,10 @@ BuildRequires:	java-xalan
 BuildRequires:	java-xerces
 BuildRequires:	java-xmlgraphics-batik
 %{?with_tests:BuildRequires:	java-xmlunit}
-BuildRequires:	jdk
+%buildrequires_jdk
 BuildRequires:	jpackage-utils
 BuildRequires:	rpm-javaprov
-BuildRequires:	rpmbuild(macros) >= 1.300
+BuildRequires:	rpmbuild(macros) >= 1.556
 Requires(post):	java-commons-io
 Requires(post):	java-xmlgraphics-commons
 Requires(post):	java-xml-commons-external
